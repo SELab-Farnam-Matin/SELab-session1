@@ -55,3 +55,46 @@ body {
 html {
     scroll-behavior: smooth; /* فعال‌سازی اسکرول نرم */
 }
+
+
+
+
+/* src/index.css (ادامه کدها) */
+
+/* 1. Dark Mode Classes - Applied to the main app container */
+/*
+   هدف: تعریف استایل‌های کلی برای حالت روشن و تاریک که به div اصلی اپلیکیشن اعمال می‌شوند.
+   توضیح: این کلاس‌ها (light و dark) به کامپوننت App.jsx اضافه می‌شوند و با استفاده از متغیرهای CSS (تعریف شده در کامیت قبلی)
+   رنگ پس‌زمینه و متن اصلی را بر اساس تم انتخاب شده تنظیم می‌کنند.
+*/
+.app-container.light {
+    background-color: var(--bg-light); /* پس‌زمینه اپلیکیشن در حالت روشن */
+    color: var(--text-light); /* رنگ متن اپلیکیشن در حالت روشن */
+}
+
+.app-container.dark {
+    background-color: var(--bg-dark); /* پس‌زمینه اپلیکیشن در حالت تاریک */
+    color: var(--text-dark); /* رنگ متن اپلیکیشن در حالت تاریک */
+}
+
+/* 2. Theme-Adaptive Styles for Specific Elements */
+/*
+   هدف: تنظیم استایل المان‌های خاصی که باید با تغییر تم، رنگ پس‌زمینه یا بوردر آن‌ها نیز تغییر کند.
+   توضیح: برای المان‌هایی مانند کارت‌های پروژه، فیلدهای ورودی فرم و textarea، نیاز داریم که رنگ پس‌زمینه و بوردر آن‌ها
+   نیز متناسب با تم (روشن یا تاریک) تغییر کند تا ظاهر یکپارچه‌ای داشته باشند.
+*/
+.app-container.light .project-card,
+.app-container.light form input,
+.app-container.light form textarea {
+    background-color: var(--card-bg-light); /* پس‌زمینه کارت و ورودی فرم در حالت روشن */
+    border-color: var(--border-light); /* رنگ بوردر کارت و ورودی فرم در حالت روشن */
+    color: var(--text-light); /* رنگ متن داخل ورودی‌ها در حالت روشن */
+}
+
+.app-container.dark .project-card,
+.app-container.dark form input,
+.app-container.dark form textarea {
+    background-color: var(--card-bg-dark); /* پس‌زمینه کارت و ورودی فرم در حالت تاریک */
+    border-color: var(--border-dark); /* رنگ بوردر کارت و ورودی فرم در حالت تاریک */
+    color: var(--text-dark); /* رنگ متن داخل ورودی‌ها در حالت تاریک */
+}
