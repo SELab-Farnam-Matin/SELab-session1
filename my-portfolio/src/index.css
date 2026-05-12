@@ -1,147 +1,91 @@
-/* src/index.css */
 
-/* 1. Universal Box-sizing Reset */
-/*
-   هدف: اطمینان از اینکه padding و border در محاسبه عرض و ارتفاع المان‌ها لحاظ شوند.
-   توضیح: این یک ریست CSS رایج و توصیه شده است که از مشکلات مربوط به سایزبندی المان‌ها جلوگیری می‌کند.
-   با `box-sizing: border-box;`، اگر یک div با `width: 100px;` و `padding: 10px;` داشته باشید،
-   عرض کلی آن همچنان 100px خواهد بود (80px محتوا + 20px پدینگ)، که مدیریت لی‌آوت را ساده‌تر می‌کند.
-*/
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* 2. Root CSS Variables for Theming */
-/*
-   هدف: تعریف متغیرهای سراسری CSS برای رنگ‌ها که در سراسر پروژه استفاده خواهند شد.
-   توضیح: این متغیرها مدیریت پالت رنگی را آسان می‌کنند و برای پیاده‌سازی Dark Mode ضروری هستند.
-   با تغییر مقادیر این متغیرها در کلاس‌های .light و .dark (در کامیت بعدی)، تم کلی سایت تغییر می‌کند.
-*/
 :root {
-    --bg-light: #f8f9fa; /* رنگ پس‌زمینه در حالت روشن */
-    --text-light: #212529; /* رنگ متن در حالت روشن */
-    --bg-dark: #121212; /* رنگ پس‌زمینه در حالت تاریک */
-    --text-dark: #e0e0e0; /* رنگ متن در حالت تاریک */
-    --primary-color: #646cff; /* رنگ اصلی و برجسته برای لینک‌ها، دکمه‌ها و... */
-    --secondary-color: #007bff; /* رنگ ثانویه، در صورت نیاز */
-    --card-bg-light: #ffffff; /* رنگ پس‌زمینه کارت‌ها و باکس‌ها در حالت روشن */
-    --card-bg-dark: #1e1e1e; /* رنگ پس‌زمینه کارت‌ها و باکس‌ها در حالت تاریک */
-    --border-light: #dee2e6; /* رنگ بوردر در حالت روشن */
-    --border-dark: #3a3a3a; /* رنگ بوردر در حالت تاریک */
+    --bg-light: #f8f9fa;
+    --text-light: #212529;
+    --bg-dark: #121212;
+    --text-dark: #e0e0e0;
+    --primary-color: #646cff;
+    --secondary-color: #007bff;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: #1e1e1e;
+    --border-light: #dee2e6;
+    --border-dark: #3a3a3a;
 }
 
-/* 3. Base Body Styles */
-/*
-   هدف: تنظیمات پایه استایل برای تگ `body` که بر کل سند اعمال می‌شود.
-   توضیح: این بخش شامل فونت، حاشیه‌ها و بهبود رندرینگ متن است تا تجربه کاربری بهتری ارائه دهد.
-*/
 body {
-    margin: 0; /* حذف margin پیش‌فرض مرورگر برای body */
-    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* تعریف فونت اصلی پروژه با فال‌بک‌های مناسب */
-    line-height: 1.6; /* افزایش فاصله بین خطوط برای خوانایی بهتر */
-    -webkit-font-smoothing: antialiased; /* بهبود رندرینگ فونت در مرورگرهای WebKit (مثل کروم و سافاری) */
-    -moz-osx-font-smoothing: grayscale; /* بهبود رندرینگ فونت در مرورگر فایرفاکس در macOS */
-    text-rendering: optimizeLegibility; /* بهینه‌سازی رندرینگ متن برای خوانایی */
+    margin: 0;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
-/* 4. Smooth Scroll Behavior */
-/*
-   هدف: فعال کردن اسکرول نرم (Smooth Scroll) هنگام کلیک روی لینک‌های Anchor.
-   توضیح: این قابلیت باعث می‌شود به جای پرش ناگهانی به یک بخش دیگر، صفحه با انیمیشن نرمی به آنجا اسکرول شود.
-   این برای Single Page Application (SPA) با لینک‌های داخلی (#home, #about) بسیار کاربردی است.
-*/
+
 html {
-    scroll-behavior: smooth; /* فعال‌سازی اسکرول نرم */
+    scroll-behavior: smooth;
 }
 
 
 
 
-/* src/index.css (ادامه کدها) */
 
-/* 1. Dark Mode Classes - Applied to the main app container */
-/*
-   هدف: تعریف استایل‌های کلی برای حالت روشن و تاریک که به div اصلی اپلیکیشن اعمال می‌شوند.
-   توضیح: این کلاس‌ها (light و dark) به کامپوننت App.jsx اضافه می‌شوند و با استفاده از متغیرهای CSS (تعریف شده در کامیت قبلی)
-   رنگ پس‌زمینه و متن اصلی را بر اساس تم انتخاب شده تنظیم می‌کنند.
-*/
 .app-container.light {
-    background-color: var(--bg-light); /* پس‌زمینه اپلیکیشن در حالت روشن */
-    color: var(--text-light); /* رنگ متن اپلیکیشن در حالت روشن */
+    background-color: var(--bg-light);
+    color: var(--text-light);
 }
 
 .app-container.dark {
-    background-color: var(--bg-dark); /* پس‌زمینه اپلیکیشن در حالت تاریک */
-    color: var(--text-dark); /* رنگ متن اپلیکیشن در حالت تاریک */
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
 }
 
-/* 2. Theme-Adaptive Styles for Specific Elements */
-/*
-   هدف: تنظیم استایل المان‌های خاصی که باید با تغییر تم، رنگ پس‌زمینه یا بوردر آن‌ها نیز تغییر کند.
-   توضیح: برای المان‌هایی مانند کارت‌های پروژه، فیلدهای ورودی فرم و textarea، نیاز داریم که رنگ پس‌زمینه و بوردر آن‌ها
-   نیز متناسب با تم (روشن یا تاریک) تغییر کند تا ظاهر یکپارچه‌ای داشته باشند.
-*/
+
 .app-container.light .project-card,
 .app-container.light form input,
 .app-container.light form textarea {
-    background-color: var(--card-bg-light); /* پس‌زمینه کارت و ورودی فرم در حالت روشن */
-    border-color: var(--border-light); /* رنگ بوردر کارت و ورودی فرم در حالت روشن */
-    color: var(--text-light); /* رنگ متن داخل ورودی‌ها در حالت روشن */
+    background-color: var(--card-bg-light);
+    border-color: var(--border-light);
+    color: var(--text-light);
 }
 
 .app-container.dark .project-card,
 .app-container.dark form input,
 .app-container.dark form textarea {
-    background-color: var(--card-bg-dark); /* پس‌زمینه کارت و ورودی فرم در حالت تاریک */
-    border-color: var(--border-dark); /* رنگ بوردر کارت و ورودی فرم در حالت تاریک */
-    color: var(--text-dark); /* رنگ متن داخل ورودی‌ها در حالت تاریک */
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
 }
 
 
-/* src/index.css (ادامه کدها) */
-
-/* 1. General Section Styling */
-/*
-   هدف: ایجاد یک الگوی استایل‌بندی ثابت برای تمام بخش‌های اصلی صفحه (Home, About, Projects, Contact).
-   توضیح: این استایل‌ها تضمین می‌کنند که هر بخش حداقل به اندازه ارتفاع صفحه نمایش باشد و محتوای آن به صورت
-   عمودی و افقی در مرکز قرار گیرد. همچنین فضاسازی مناسبی برای Navbar ثابت در نظر گرفته شده است.
-*/
 section {
-    min-height: 100vh; /* حداقل ارتفاع هر بخش به اندازه ارتفاع ویوپورت (صفحه نمایش) */
-    display: flex; /* استفاده از فلکس‌باکس برای چیدمان محتوا */
-    flex-direction: column; /* چیدن آیتم‌ها به صورت ستونی */
-    justify-content: center; /* تراز کردن محتوا در مرکز به صورت عمودی */
-    align-items: center; /* تراز کردن محتوا در مرکز به صورت افقی */
-    padding: 4rem 2rem 0; /* پدینگ داخلی برای بخش‌ها: 4rem از بالا (برای فضاسازی از Navbar ثابت) و 2rem از چپ و راست */
-    text-align: center; /* تراز کردن متن در مرکز */
-    width: 100%; /* اطمینان از اینکه بخش‌ها عرض کامل را می‌گیرند */
-    max-width: 1200px; /* محدود کردن حداکثر عرض محتوا برای خوانایی بهتر در صفحه‌های بزرگ */
-    margin: 0 auto; /* مرکز قرار دادن بلوک محتوای بخش به صورت افقی */
-    box-sizing: border-box; /* اطمینان از اینکه پدینگ به عرض و ارتفاع کلی اضافه نمی‌شود (قبلاً در ریست CSS تنظیم شده) */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem 0;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-/* 2. Animations */
-/*
-   هدف: تعریف یک انیمیشن محو شدن (Fade-in) با حرکت جزئی از پایین به بالا.
-   توضیح: کلاس `animate-fade-in` را می‌توان به هر المانی اضافه کرد تا هنگام بارگذاری یا نمایش، با یک انیمیشن
-   نرم و زیبا از پایین به بالا ظاهر شود. `opacity: 0` و `transform: translateY(30px)` وضعیت اولیه را تنظیم می‌کنند.
-*/
 .animate-fade-in {
-    opacity: 0; /* در ابتدا کاملاً نامرئی */
-    transform: translateY(30px); /* در ابتدا 30 پیکسل به سمت پایین حرکت کرده */
-    animation: fadeIn 1s ease-out forwards; /* اعمال انیمیشن fadeIn به مدت 1 ثانیه با تابع زمانی ease-out و نگه‌داشتن در حالت نهایی */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease-out forwards;
 }
 
-/* 3. Keyframe for fadeIn animation */
-/*
-   هدف: تعریف فریم‌های کلیدی برای انیمیشن `fadeIn`.
-   توضیح: این keyframe نحوه تغییر opacity و transform را از ابتدا (`from`) تا انتها (`to`) مشخص می‌کند،
-   که منجر به ظاهر شدن المان به صورت محو و با حرکت رو به بالا می‌شود.
-*/
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); } /* شروع انیمیشن: نامرئی و 30px پایین‌تر */
-    to { opacity: 1; transform: translateY(0); } /* پایان انیمیشن: کاملاً مرئی و در جایگاه اصلی */
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
