@@ -1,16 +1,52 @@
-# React + Vite
+# My Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
+This is a personal portfolio website built with React. It showcases my skills, projects, and provides a way for others to contact me. The website is designed to be modern, responsive, and includes features like dark mode and smooth scrolling.
 
-Currently, two official plugins are available:
+## Features
+- Home Section
+- About Section (Skills, Experience)
+- Projects Section (with project cards)
+- Contact Section (form)
+- Responsive Design
+- Dark Mode Toggle
+- Smooth Scrolling
+- Animations
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Technologies Used
+- React (Vite)
+- CSS (for styling, including custom dark mode)
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+Make sure you have Node.js and npm (or yarn) installed on your machine.
 
-## Expanding the ESLint configuration
+### Installation
+1. Clone the repository:
+```bash
+   git clone <repository-url>
+   cd my-portfolio
+```   
+2. Install dependencies:
+```bash
+   npm install
+   # or yarn install
+```   
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Running the Project
+To start the development server:
+
+```bash
+  npm run dev
+  # or yarn dev
+```
+Open your browser and navigate to `http://localhost:5173` (or whatever port Vite specifies).
+
+### Building for Production
+To build the project for production:
+```bash
+  npm run build
+  # or yarn build
+```
+This will create a `dist` folder with the production-ready static files.
