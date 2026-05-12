@@ -1,0 +1,91 @@
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-light: #f8f9fa;
+    --text-light: #212529;
+    --bg-dark: #121212;
+    --text-dark: #e0e0e0;
+    --primary-color: #646cff;
+    --secondary-color: #007bff;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: #1e1e1e;
+    --border-light: #dee2e6;
+    --border-dark: #3a3a3a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+.app-container.light {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+.app-container.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+
+.app-container.light .project-card,
+.app-container.light form input,
+.app-container.light form textarea {
+    background-color: var(--card-bg-light);
+    border-color: var(--border-light);
+    color: var(--text-light);
+}
+
+.app-container.dark .project-card,
+.app-container.dark form input,
+.app-container.dark form textarea {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem 0;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
