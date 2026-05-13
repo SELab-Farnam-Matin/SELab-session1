@@ -10,107 +10,27 @@ html {
     scroll-behavior: smooth;
 }
 
-
 :root {
-    /* Colors */
     --color-text: #ffffff;
     --color-primary: #191c32; /* Dark blue */
     --color-secondary: #536dfe; /* Bright blue */
     --color-dark: #0b0f19;
     --color-background: #040c18;
-
-    /* Fonts */
     --font-primary: "Outfit", sans-serif;
+    --color-text-invert-filter: 0; /* No invert for dark mode */
 }
 
-/* Light Theme Variables */
 .light {
     --color-text: #111111;
     --color-primary: #edf2f8; /* Light gray-blue */
     --color-secondary: #3182ce; /* Medium blue */
     --color-dark: #e2e8f0;
     --color-background: #ffffff;
+    --color-text-invert-filter: 1; /* Invert for light mode to make dark icons visible */
 }
 
 body {
     font-family: var(--font-primary), serif;
     background-color: var(--color-background);
     transition: background-color 0.3s ease;
-}
-
-a {
-    text-decoration: none;
-    color: var(--color-text);
-}
-
-ul {
-    list-style: none;
-}
-
-/* Global Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        transform: translateX(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-
-@keyframes slideInDown {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes zoomIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-@keyframes floating {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
 }

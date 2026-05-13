@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <section className={styles.container}>
             <div className={styles.content}>
-                <h1 className={styles.title}>Hi, I'm Farnam Forghani</h1>
+                <h1 className={styles.title}>Hi, I'm Matin Mohammadi</h1>
                 <p className={styles.description}>
                     I'm a full-stack developer with 3 years of experience using React and Node.js.
                     Reach out if you'd like to learn more!

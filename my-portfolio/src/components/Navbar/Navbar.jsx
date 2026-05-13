@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ toggleDarkMode, darkMode }) => {
+const Navbar = ({}) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -21,11 +21,6 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
                     <li><a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a></li>
                     <li><a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a></li>
                     <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
-                    <li>
-                        <button onClick={toggleDarkMode}>
-                            {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
-                        </button>
-                    </li>
                 </ul>
             </div>
         </nav>
