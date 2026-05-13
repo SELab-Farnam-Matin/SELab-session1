@@ -34,3 +34,14 @@ body {
     background-color: var(--color-background);
     transition: background-color 0.3s ease;
 }
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}

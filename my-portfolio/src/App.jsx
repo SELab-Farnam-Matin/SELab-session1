@@ -1,6 +1,5 @@
-// src/App.jsx
 import { useState, useEffect } from 'react';
-import styles from './App.module.css'; // Make sure App.module.css exists
+import styles from './App.module.css';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -19,8 +18,25 @@ function App() {
         setDarkMode(prevMode => !prevMode);
     };
 
-    // If darkMode is false, the theme will be 'light'. If true, it will be empty (for dark).
     const themeClass = !darkMode ? 'light' : '';
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        const hiddenElements = document.querySelectorAll('.scroll-animate');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        return () => hiddenElements.forEach((el) => observer.unobserve(el));
+    }, []);
 
     return (
         // The themeClass ('light' or '') is applied here
