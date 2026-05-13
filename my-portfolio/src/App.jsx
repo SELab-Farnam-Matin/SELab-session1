@@ -1,42 +1,36 @@
-import React, { useState, useEffect } from 'react';
+// src/App.jsx
+import { useState, useEffect } from 'react';
+import styles from './App.module.css';
+import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
+import About from './components/About/About';
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false);
+    // Logic for dark mode state
+    const [darkMode, setDarkMode] = useState(() => {
+        const savedMode = localStorage.getItem('darkMode');
+        // We default to dark mode if nothing is saved
+        return savedMode ? JSON.parse(savedMode) : true;
+    });
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setDarkMode(true);
-        } else if (savedTheme === 'light') {
-            setDarkMode(false);
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setDarkMode(prefersDark);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (darkMode) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
+        localStorage.setItem('darkMode', JSON.stringify(darkMode));
     }, [darkMode]);
-
 
     const toggleDarkMode = () => {
         setDarkMode(prevMode => !prevMode);
     };
 
+    // If darkMode is false, the theme will be 'light'. If true, it will be empty (for dark).
+    const themeClass = !darkMode ? 'light' : '';
+
     return (
-
-        <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
-            {}
-            <h1>Portfolio Started</h1>
-            <p>Dark Mode is currently: {darkMode ? 'On' : 'Off'}</p>
-            <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-
-            {}
+        // The themeClass ('light' or '') is applied here
+        <div className={`${styles.App} ${themeClass}`}>
+            <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+            <Home />
+            <About />
+            {/* Other components will be added here */}
         </div>
     );
 }

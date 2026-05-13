@@ -1,91 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-*,
-*::before,
-*::after {
+* {
     box-sizing: border-box;
-}
-
-:root {
-    --bg-light: #f8f9fa;
-    --text-light: #212529;
-    --bg-dark: #121212;
-    --text-dark: #e0e0e0;
-    --primary-color: #646cff;
-    --secondary-color: #007bff;
-    --card-bg-light: #ffffff;
-    --card-bg-dark: #1e1e1e;
-    --border-light: #dee2e6;
-    --border-dark: #3a3a3a;
-}
-
-body {
     margin: 0;
-    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    padding: 0;
 }
-
 
 html {
     scroll-behavior: smooth;
 }
 
 
+:root {
+    /* Colors */
+    --color-text: #ffffff;
+    --color-primary: #191c32; /* Dark blue */
+    --color-secondary: #536dfe; /* Bright blue */
+    --color-dark: #0b0f19;
+    --color-background: #040c18;
 
-
-
-.app-container.light {
-    background-color: var(--bg-light);
-    color: var(--text-light);
+    /* Fonts */
+    --font-primary: "Outfit", sans-serif;
 }
 
-.app-container.dark {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
+/* Light Theme Variables */
+.light {
+    --color-text: #111111;
+    --color-primary: #edf2f8; /* Light gray-blue */
+    --color-secondary: #3182ce; /* Medium blue */
+    --color-dark: #e2e8f0;
+    --color-background: #ffffff;
 }
 
-
-.app-container.light .project-card,
-.app-container.light form input,
-.app-container.light form textarea {
-    background-color: var(--card-bg-light);
-    border-color: var(--border-light);
-    color: var(--text-light);
+body {
+    font-family: var(--font-primary), serif;
+    background-color: var(--color-background);
+    transition: background-color 0.3s ease;
 }
 
-.app-container.dark .project-card,
-.app-container.dark form input,
-.app-container.dark form textarea {
-    background-color: var(--card-bg-dark);
-    border-color: var(--border-dark);
-    color: var(--text-dark);
+a {
+    text-decoration: none;
+    color: var(--color-text);
 }
 
-
-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 4rem 2rem 0;
-    text-align: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
+ul {
+    list-style: none;
 }
 
-.animate-fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeIn 1s ease-out forwards;
-}
-
+/* Global Animations */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
