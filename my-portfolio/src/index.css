@@ -145,3 +145,7 @@ section {
     to { opacity: 1; transform: translateY(0); } /* پایان انیمیشن: کاملاً مرئی و در جایگاه اصلی */
 }
 
+::selection {
+    background-color: burlywood;
+    color: black;
+}
