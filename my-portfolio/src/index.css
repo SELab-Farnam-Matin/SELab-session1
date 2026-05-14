@@ -30,9 +30,16 @@ html {
 }
 
 body {
-    font-family: var(--font-primary), serif;
+    /* Fixed fallback font and applied global text color */
+    font-family: var(--font-primary);
     background-color: var(--color-background);
-    transition: background-color 0.3s ease;
+    color: var(--color-text);
+
+    /* Prevents components from breaking horizontal alignment */
+    overflow-x: hidden;
+
+    /* Smooth transition for both background and text when toggling theme */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .scroll-animate {
@@ -44,4 +51,9 @@ body {
 .scroll-animate.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+::selection {
+    background-color: burlywood;
+    color: black;
 }
