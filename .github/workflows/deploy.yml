@@ -1,4 +1,3 @@
-# .github/workflows/deploy.yml
 name: Deploy static content to Pages
 
 on:
@@ -29,11 +28,14 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: 'my-portfolio/package-lock.json'
 
       - name: Install dependencies
+        working-directory: ./my-portfolio
         run: npm install
 
       - name: Build
+        working-directory: ./my-portfolio
         run: npm run build
 
       - name: Setup Pages
@@ -42,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './my-portfolio'
+          path: './my-portfolio/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
