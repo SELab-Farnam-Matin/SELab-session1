@@ -13,6 +13,7 @@ html {
 :root {
     --color-text: #ffffff;
     --color-primary: #191c32; /* Dark blue */
+    --color-primary-light: #ADD8E6; /* Light blue */
     --color-secondary: #536dfe; /* Bright blue */
     --color-dark: #0b0f19;
     --color-background: #040c18;
