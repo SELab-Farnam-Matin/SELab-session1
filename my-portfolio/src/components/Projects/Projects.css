@@ -1,0 +1,96 @@
+.projects-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: var(--color-text);
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.projects-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    color: var(--color-text);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.project-card {
+    background-color: var(--color-dark);
+    padding: 1.5rem;
+    border-radius: 1.5rem; /* Matching about.css items */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tag {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.project-link {
+    color: var(--color-secondary); /* Making links pop using the secondary color */
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 1rem;
+    align-self: flex-start;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 830px) {
+    .projects-section {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .projects-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}

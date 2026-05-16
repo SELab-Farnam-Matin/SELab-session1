@@ -1,0 +1,139 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3.5rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: var(--color-text);
+    z-index: 2; /* Ensure navbar is above other content */
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menuItems {
+    display: flex;
+    gap: 3.5rem;
+    list-style: none;
+}
+
+.menuItems a {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menuItems a:hover {
+    color: var(--color-secondary);
+}
+
+.menuBtn {
+    display: none;
+}
+
+/* Styles for the Dark Mode Toggle Button */
+.darkModeToggle {
+    background: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.darkModeToggle:hover {
+    background: var(--color-secondary);
+    border-color: var(--color-primary);
+}
+
+.darkModeIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(var(--color-text-invert-filter, 0)); /* Adjust icon color based on theme */
+    transition: filter 0.3s ease;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 830px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        position: absolute;
+        right: 0;
+        margin-right: 10%;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 11px;
+        z-index: 3;
+    }
+
+    .menuBtn {
+        display: block;
+        cursor: pointer;
+        width: 2rem; /* Size for menu button */
+        height: 2rem;
+    }
+
+    .menuItems {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 0.5rem;
+        background: rgb(25, 28, 50);
+        background: linear-gradient(
+                0deg,
+                rgba(25, 28, 50, 0.9) 0%,
+                rgba(25, 28, 50, 0.9) 100%
+        );
+        padding: 1.5rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .menuOpen {
+        display: flex;
+    }
+
+    .menuItems a {
+        font-size: 1.2rem;
+    }
+
+    .darkModeToggle {
+        margin-top: 1rem; /* Space from menu items */
+    }
+}
+
+.themeToggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.themeToggle:hover {
+    transform: scale(1.1);
+}

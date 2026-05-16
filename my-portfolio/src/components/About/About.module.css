@@ -1,0 +1,191 @@
+
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    z-index: 1;
+    margin-left: 10%;
+    margin-right: 10%;
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.title {
+    color: var(--color-text);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+}
+
+.aboutImage {
+    width: 35%;
+    border-radius: 1rem;
+    animation: floating 3s ease-in-out infinite, zoomIn 1s ease-out forwards;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.aboutItems {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 65%;
+}
+
+.aboutItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 1.5rem;
+    list-style: none;
+    padding: 1.5rem 1.5rem;
+    /* --- شروع تغییرات --- */
+    background-color: var(--color-dark); /* پس‌زمینه پیش‌فرض برای آیتم‌های مهارت */
+    background-image: linear-gradient(
+            90deg,
+            rgba(165, 215, 232, 0.42) 0%,
+            rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 0 100%; /* گرادیان در ابتدا مخفی است */
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease, background-color 0.5s ease; /* افزودن transition برای background-color */
+    /* --- پایان تغییرات --- */
+    animation: fadeInRight 1.5s ease-out forwards;
+}
+
+.aboutItem:hover {
+    background-size: 100% 100%; /* گرادیان در هاور رشد می‌کند */
+    background-color: var(--color-primary); /* تغییر پس‌زمینه اصلی در هاور (اختیاری) */
+    cursor: pointer;
+}
+
+.aboutItem img {
+    /* --- شروع تغییرات --- */
+    width: 3rem; /* کاهش اندازه آیکون از 4.5rem به 3rem */
+    /* --- پایان تغییرات --- */
+    margin-right: 1.5rem;
+}
+
+.aboutItemText h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.aboutItemText p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Placeholder for image assets.
+   Replace with actual image paths later.
+   For now, we'll use a simple background. */
+.aboutItem img[alt*="Cursor"] {
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+.aboutItem img[alt*="Server"] {
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+.aboutItem img[alt*="UI"] {
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+
+/* Responsive Design for smaller screens */
+@media screen and (max-width: 830px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .content {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .aboutImage {
+        width: 60%;
+    }
+
+    .aboutItems {
+        width: 90%;
+    }
+
+    .aboutItem {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .aboutItem img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+/* Skills section */
+.skillsTitle {
+    color: var(--color-text);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.skillItem {
+    background: linear-gradient(
+            90deg,
+            rgba(165, 215, 232, 0.42) 0%,
+            rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-text);
+    transition: transform 0.2s ease, background-size 0.4s ease;
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+}
+
+.skillItem:hover {
+    background-size: 100% 100%;
+    transform: translateY(-4px);
+}
+
+.skillItem img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}

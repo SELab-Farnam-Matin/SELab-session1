@@ -1,42 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import styles from './App.module.css';
+import './index.css'; // Keep your global css
+import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Projects from './components/Projects/Projects.jsx'; // Your added component
+import Contact from './components/Contacts/Contact.jsx';   // Your added component
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false);
+    // Using the state logic from the 'components' branch
+    const [darkMode, setDarkMode] = useState(() => {
+        const savedMode = localStorage.getItem('darkMode');
+        return savedMode ? JSON.parse(savedMode) : true; // Default to dark mode
+    });
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setDarkMode(true);
-        } else if (savedTheme === 'light') {
-            setDarkMode(false);
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            setDarkMode(prefersDark);
-        }
-    }, []);
+        localStorage.setItem('theme',darkMode ? 'dark' : 'light');
 
-    useEffect(() => {
+        // localStorage.setItem('darkMode', JSON.stringify(darkMode));
+
         if (darkMode) {
-            localStorage.setItem('theme', 'dark');
+            document.body.classList.remove('light');
         } else {
-            localStorage.setItem('theme', 'light');
+            document.body.classList.add('light');
         }
     }, [darkMode]);
-
 
     const toggleDarkMode = () => {
         setDarkMode(prevMode => !prevMode);
     };
 
+    const themeClass = !darkMode ? 'light' : '';
+
+    // Scroll animation logic from 'components' branch
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        const hiddenElements = document.querySelectorAll('.scroll-animate');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        return () => hiddenElements.forEach((el) => observer.unobserve(el));
+    }, []);
+
     return (
-
-        <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
-            {}
-            <h1>Portfolio Started</h1>
-            <p>Dark Mode is currently: {darkMode ? 'On' : 'Off'}</p>
-            <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-
-            {}
+        <div className={`${styles.App} ${themeClass}`}>
+            <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+            <main>
+                <Home />
+                <About />
+                {/* Your new components integrated here */}
+                <Projects />
+                <Contact />
+            </main>
         </div>
     );
 }
