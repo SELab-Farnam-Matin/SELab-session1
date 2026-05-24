@@ -81,9 +81,9 @@ npm run dev
 | components           | اضافه کردن صفحات درباره من, ناوبری و هماهنگ کردن استایل آن‌ها   | مرج شده به master |
 | report               | نوشتن گزارش پروژه در قالب مارک‌داون در فایل README.md           | مرج شده به master |
 
-تمامی برنچ‌های feature و hotfix پس از تکمیل به main مرج شده‌اند و سپس با استفاده از GitHub Actions به صورت خودکار به برنچ gh-pages دیپلوی می‌شوند.
+تمامی برنچ‌های deployment و components پس از تکمیل به master مرج شده‌اند.
 
-### رفع Merge Conflict‌ها در طول پروژه
+### رفع Merge Conflict ‌ها در طول پروژه
 
 در طول توسعه پروژه، دو بار با Merge Conflict واقعی مواجه شدیم و آن‌ها را به صورت دستی و اصولی رفع کردیم:
 
@@ -91,33 +91,21 @@ npm run dev
 
 در حین مرج کردن این دو شاخه، بعلت اینکه ویژگی هایی از 
 App.jsx 
-توسط فرنام در برنچ componennts و ویژگی های دیگر توسط متین در برنچ 
+توسط فرنام در برنچ components و ویژگی های دیگر توسط متین در برنچ 
 feature/projects-and-contact 
 پیاده سازی شده بودند، به کانفلیکت برخوردیم.
 
 ![Conflict1.jpg](Photos/Conflict1.jpg)
 
-برای رفع آن، از ویژگی های UI نرم افزار Intelij IDEA استفاده کردیم و تغییرات لازم را در نسخه نهایی نگهداشتیم.
+برای رفع آن، از ویژگی های UI نرم افزار Intellij IDEA استفاده کردیم و تغییرات لازم را در نسخه نهایی نگهداشتیم.
 
 ![Conflict2.jpg](Photos/Conflict2.jpg)
 ![Conflict3.jpg](Photos/Conflict3.jpg)
-#### 2. Merge Conflict در index.css (هنگام مرج کردن برنچ feature/projects-and-cpntact به برنچ components)
+#### 2. Merge Conflict در index.css (هنگام مرج کردن برنچ feature/projects-and-contact به برنچ components)
 
 مشابه همان مراحلی که در بخش قبلی طی کردیم، کافلیکت ایجاد شده در فایل index.css را نیز با استفاده از ویژگی های IDE برطرف کردیم. 
 ![Conflict4.jpg](Photos/Conflict4.jpg)
 ![Conflict5.jpg](Photos/Conflict5.jpg)
-
-#### ۲. Merge Conflict در فایل .github/workflows/deploy.yml و index.html (مرج برنچ hotfix/github-pages-config به main)
-بعد از اینکه فیچرهای قبلی مرج شده بودند، در برنچ hotfix/github-pages-config تنظیمات workflow و مسیر پایه GitHub Pages را اصلاح کردیم. هنگام مرج به main، تغییراتی که قبلاً روی همان workflow (برای اضافه کردن step های اضافی) و همچنین روی index.html (تغییرات جزئی در لینک‌ها) اعمال شده بود، کانفلیکت ایجاد کرد.  
-فایل‌های درگیر:
-- .github/workflows/deploy.yml (تغییر path و job های build)
-- index.html (لینک‌های ناوبری و base href)  
-  راه‌حل:
-- هر دو نسخه از workflow را ترکیب کردیم تا هم تنظیمات جدید hotfix اعمال شود و هم step های قبلی حفظ شوند.
-- در index.html لینک‌های به‌روز شده hotfix را نگه داشتیم و ساختار قبلی را ادغام کردیم.  
-  کامیت رفع کانفلیکت: Merge branch 'hotfix/github-pages-config' into main (resolve conflicts in workflow and index.html)
-
-با رفع این دو کانفلیکت، پروژه بدون از دست رفتن هیچ تغییری به‌روزرسانی شد و سایت GitHub Pages هم درست دیپلوی شد.
 
 
 ## آدرس سایت لانچ‌شده (GitHub Pages)
