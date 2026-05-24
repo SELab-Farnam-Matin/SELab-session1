@@ -96,12 +96,12 @@ npm run dev
   کامیت رفع کانفلیکت: Merge branch 'feature/french-lang' into main (resolve conflicts in index.html)
 
 #### ۲. Merge Conflict در فایل .github/workflows/deploy.yml و index.html (مرج برنچ hotfix/github-pages-config به main)
-بعد از اینکه فیچرهای قبلی مرج شده بودند، در برنچ hotfix/github-pages-config تنظیمات workflow و مسیر پایه GitHub Pages را اصلاح کردیم. هنگام مرج به main، تغییراتی که قبلاً روی همان workflow (برای اضافه کردن stepهای اضافی) و همچنین روی index.html (تغییرات جزئی در لینک‌ها) اعمال شده بود، کانفلیکت ایجاد کرد.  
+بعد از اینکه فیچرهای قبلی مرج شده بودند، در برنچ hotfix/github-pages-config تنظیمات workflow و مسیر پایه GitHub Pages را اصلاح کردیم. هنگام مرج به main، تغییراتی که قبلاً روی همان workflow (برای اضافه کردن step های اضافی) و همچنین روی index.html (تغییرات جزئی در لینک‌ها) اعمال شده بود، کانفلیکت ایجاد کرد.  
 فایل‌های درگیر:
-- .github/workflows/deploy.yml (تغییر path و jobهای build)
+- .github/workflows/deploy.yml (تغییر path و job های build)
 - index.html (لینک‌های ناوبری و base href)  
   راه‌حل:
-- هر دو نسخه از workflow را ترکیب کردیم تا هم تنظیمات جدید hotfix اعمال شود و هم stepهای قبلی حفظ شوند.
+- هر دو نسخه از workflow را ترکیب کردیم تا هم تنظیمات جدید hotfix اعمال شود و هم step های قبلی حفظ شوند.
 - در index.html لینک‌های به‌روز شده hotfix را نگه داشتیم و ساختار قبلی را ادغام کردیم.  
   کامیت رفع کانفلیکت: Merge branch 'hotfix/github-pages-config' into main (resolve conflicts in workflow and index.html)
 
@@ -112,4 +112,173 @@ npm run dev
 
 ```
 https://selab-farnam-matin.github.io/SELab-session1/
+```
+
+
+## پرسش‌ها
+
+## ۱) پوشه‌ی .git چیست؟ چه اطلاعاتی در آن ذخیره می‌شود؟ با چه دستوری ساخته می‌شود؟
+
+
+پوشه‌ی `.git` قلب هر مخزن Git است. وقتی یک پروژه را با Git مدیریت می‌کنید، تمام اطلاعات تاریخچه، تنظیمات و وضعیت مخزن در این پوشه‌ی مخفی ذخیره می‌شود.
+
+### ساخته شدن با دستور:
+```bash
+git init
+```
+
+### یا وقتی مخزن را از راه دور کپی می‌کنید:
+```
+git clone <url>
+```
+
+این دستور یک پوشه‌ی `.git` در دایرکتوری جاری می‌سازد و آن را به یک مخزن Git تبدیل می‌کند.
+
+### اطلاعات ذخیره‌شده در `.git`:
+
+| فایل / پوشه | محتوا                                                           |
+|-------------|-----------------------------------------------------------------|
+| `HEAD` | اشاره‌گر به branch یا commit جاری                               |
+| `config` | تنظیمات محلی مخزن (نام، ایمیل، remote و ...)                    |
+| `objects/` | تمام داده‌های پروژه (فایل‌ها، commit ها، درخت‌ها) به صورت فشرده |
+| `refs/` | اشاره‌گرهای branch ها و tag ها                                  |
+| `index` | فایل stage (تغییراتی که آماده‌ی commit هستند)                   |
+| `logs/` | تاریخچه‌ی تغییرات HEAD و branch ها                              |
+| `COMMIT_EDITMSG` | پیام آخرین commit                                               |
+| `MERGE_HEAD` | در زمان merge، اشاره‌گر به commit مبدأ                          |
+
+هرگز محتوای این پوشه را دستی تغییر ندهید.
+
+
+---
+## ۲) منظور از atomic بودن در atomic commit و atomic pull-request چیست؟
+
+
+
+---
+## ۳) تفاوت دستورهای fetch و pull و merge و rebase و cherry-pick
+
+
+### `git fetch`
+تغییرات remote را **دانلود** می‌کند، اما هیچ تغییری در working directory یا branch جاری ایجاد **نمی‌کند**. فقط اطلاعات را به‌روز می‌کند.
+bash
+```
+git fetch origin
+```
+
+### `git pull`
+ترکیب `fetch` + `merge` است. تغییرات remote را دانلود کرده و **بلافاصله** با branch جاری ادغام می‌کند.
+bash
+```
+git pull origin main
+```
+
+### `git merge`
+دو branch را با هم ادغام می‌کند و یک **merge commit** جدید می‌سازد. تاریخچه‌ی هر دو branch حفظ می‌شود.
+bash
+```
+git merge feature-branch
+```
+
+### `git rebase`
+commit های یک branch را **بازنویسی** کرده و آن‌ها را روی نوک branch دیگری قرار می‌دهد. تاریخچه خطی و تمیزتر می‌شود، اما commit های قدیمی بازنویسی می‌شوند.
+bash
+```
+git rebase main
+```
+از `rebase` روی branch های عمومی (shared) استفاده نکنید.
+
+### `git cherry-pick`
+یک یا چند commit **مشخص** را از هر جایی از تاریخچه انتخاب کرده و روی branch جاری اعمال می‌کند.
+bash
+```
+git cherry-pick <commit-hash>
+```
+کاربرد آن در این است که وقتی فقط یک bugfix خاص از branch دیگری را می‌خواهید، نه کل آن branch.
+
+### جدول مقایسه:
+
+| دستور | دانلود از remote | ادغام | بازنویسی تاریخچه | انتخابی |
+|-------|:-:|:-:|:-:|:-:|
+| `fetch` | ✅ | ❌ | ❌ | ❌ |
+| `pull` | ✅ | ✅ | ❌ | ❌ |
+| `merge` | ❌ | ✅ | ❌ | ❌ |
+| `rebase` | ❌ | ✅ | ✅ | ❌ |
+| `cherry-pick` | ❌ | ✅ | ❌ | ✅ |
+
+
+---
+## ۴) تفاوت دستورهای reset و revert و restore و switch و checkout
+
+
+
+---
+## ۵) منظور از stage یا همان index چیست؟ دستور stash چه کاری انجام می‌دهد؟
+
+
+### Stage یا Index چیست؟
+Stage (یا Index) یک **ناحیه‌ی میانی** بین working directory و مخزن است. تغییراتی که با `git add` علامت‌گذاری می‌شوند وارد stage می‌شوند و در commit بعدی ثبت خواهند شد.
+
+
+Working Directory  →  git add  →  Stage (Index)  →  git commit  →  Repository
+
+- تغییراتی که هنوز `add` نشده‌اند: **Unstaged**
+- تغییراتی که `add` شده‌اند: **Staged**
+- تغییراتی که `commit` شده‌اند: بخشی از تاریخچه
+
+bash
+```
+git add file.txt        # اضافه کردن به stage
+git status              # مشاهده‌ی وضعیت stage
+git diff --staged       # مشاهده‌ی تفاوت‌های staged
+```
+---
+
+### دستور `git stash`
+`stash` تغییرات **ذخیره‌نشده** (هم staged و هم unstaged) را به صورت موقت کنار می‌گذارد تا working directory تمیز شود، بدون اینکه commit بسازید.
+
+bash
+```
+git stash           # ذخیره‌ی موقت تغییرات
+git stash list      # مشاهده‌ی لیست stashها
+git stash pop       # بازگرداندن آخرین stash و حذف آن از لیست
+git stash apply     # بازگرداندن آخرین stash بدون حذف از لیست
+git stash drop      # حذف آخرین stash
+```
+**مثال کاربردی:** روی یک feature کار می‌کنید که نیمه‌کاره است. یک باگ فوری گزارش می‌شود. با `stash` کارهای نیمه‌کاره را کنار می‌گذارید، باگ را رفع می‌کنید، و بعد با `stash pop` به کار قبلی برمی‌گردید.
+
+
+---
+## ۶) مفهوم snapshot به چه معناست؟ ارتباط آن با commit چیست؟
+
+
+
+---
+## ۷) تفاوت‌های local repository و remote repository چیست؟
+
+### Local Repository
+مخزنی که **روی سیستم شما** قرار دارد. تمام تاریخچه، branch ها و commit ها در پوشه‌ی `.git` روی ماشین محلی ذخیره می‌شوند. بدون اینترنت هم می‌توانید با آن کار کنید.
+
+### Remote Repository
+مخزنی که روی یک **سرور خارجی** (مثل GitHub، GitLab، Bitbucket) قرار دارد. برای همکاری تیمی و به اشتراک‌گذاری کد استفاده می‌شود.
+
+### جدول مقایسه:
+
+| ویژگی           | Local Repository            | Remote Repository       |
+|-----------------|-----------------------------|-------------------------|
+| محل ذخیره       | سیستم شما                   | سرور خارجی              |
+| نیاز به اینترنت | ❌                           | ✅                       |
+| همکاری تیمی     | ❌                           | ✅                       |
+| پشتیبان‌گیری    | ❌                           | ✅                       |
+| سرعت عملیات     | سریع                        | وابسته به شبکه          |
+| دستورات مرتبط   | `commit`, `branch`, `merge` | `push`, `pull`, `fetch` |
+
+### دستورات ارتباط با Remote:
+bash
+```
+git remote add origin <url>   # اضافه کردن remote
+git remote -v                 # مشاهده‌ی remoteهای تعریف‌شده
+git push origin main          # ارسال تغییرات به remote
+git pull origin main          # دریافت تغییرات از remote
+git clone <url>               # کپی کردن یک remote repository به صورت local
 ```
